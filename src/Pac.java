@@ -26,17 +26,15 @@ public class Pac extends Ellipse {
         this.canvas = canvas;
 
         this.canvas.onMouseMove(event ->
-                updatePosition(event.getPosition()));
+                updatePacPosition(event.getPosition()));
         this.canvas.add(this);
     }
 
-    public void updatePosition(Point mouse){
+    public void updatePacPosition(Point mouse){
         double mouseX = mouse.getX();
         double mouseY = mouse.getY();
         setCenter(mouseX,mouseY);
     }
-
-
 
     public double getCenterX(){
         return this.centerX;
@@ -44,12 +42,6 @@ public class Pac extends Ellipse {
 
     public double getCenterY(){
         return this.centerY;
-    }
-
-    public void updatePacPosition(int centerX,int centerY){
-        this.centerX = centerX;
-        this.centerY = centerY;
-        this.setPosition(centerX, centerY);
     }
 
 }
