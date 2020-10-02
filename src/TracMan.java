@@ -1,70 +1,43 @@
-import comp127graphics.*;
 import comp127graphics.CanvasWindow;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class TracMan extends CanvasWindow implements  MouseListener, MouseMotionListener{
+public class TracMan {
 
     private static final int CANVAS_WIDTH = 500;
-    private static final int CANVAS_HEIGHT = CANVAS_WIDTH/2 *3;
+    private static final int CANVAS_HEIGHT = CANVAS_WIDTH / 2 * 3;
     private static final Color CanvasColor = new Color(54, 54, 255, 205);
+    private Pac pac;
+    public CanvasWindow canvas;
 
     public static void main(String[] args) {
-        TracMan prog = new TracMan();
-    }
-
-    public TracMan(){
-        super("TrackMan!",CANVAS_WIDTH,CANVAS_HEIGHT );
-        this.setBackground(CanvasColor);
-    }
-
-    public void run(){
+        TracMan tracMan = new TracMan();
 
     }
 
-    public void beginGame(){
-
-    }
-    public void resetGame(){
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+    public TracMan() {
+        canvas = new CanvasWindow("TrackGame", CANVAS_WIDTH,CANVAS_HEIGHT);
+        canvas.setBackground(CanvasColor);
+        generatePac();
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-
+    public void generatePac() {
+        pac = new Pac(canvas,CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
+    public void run() {
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
+    public void beginGame() {
     }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+    public void resetGame() {
     }
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-    }
 }
