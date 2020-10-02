@@ -15,25 +15,19 @@ public class Pac extends Ellipse {
     public double height;
     private static final double PAC_RADIUS = 10;
 
-    private CanvasWindow canvas;
-
-    public Pac(CanvasWindow canvas, double centerX, double centerY){
+    public Pac( double centerX, double centerY){
         super(centerX- PAC_RADIUS, centerY - PAC_RADIUS, PAC_RADIUS*2, PAC_RADIUS*2);
         this.centerX = centerX;
         this.centerY = centerY;
         this.setFillColor(PAC_COLOR);
         this.setFilled(true);
-        this.canvas = canvas;
 
-        this.canvas.onMouseMove(event ->
-                updatePacPosition(event.getPosition()));
-        this.canvas.add(this);
     }
 
     public void updatePacPosition(Point mouse){
         double mouseX = mouse.getX();
         double mouseY = mouse.getY();
-        setCenter(mouseX,mouseY);
+        this.setCenter(mouseX,mouseY);
     }
 
     public double getCenterX(){

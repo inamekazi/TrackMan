@@ -3,13 +3,14 @@ import comp127graphics.CanvasWindow;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import comp127graphics.Point;
+
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class TracMan {
-
     private static final int CANVAS_WIDTH = 500;
     private static final int CANVAS_HEIGHT = CANVAS_WIDTH / 2 * 3;
     private static final Color CanvasColor = new Color(54, 54, 255, 205);
@@ -18,17 +19,18 @@ public class TracMan {
 
     public static void main(String[] args) {
         TracMan tracMan = new TracMan();
-
     }
 
     public TracMan() {
         canvas = new CanvasWindow("TrackGame", CANVAS_WIDTH,CANVAS_HEIGHT);
         canvas.setBackground(CanvasColor);
         generatePac();
+        updatePacPosinTrac(pac);
     }
 
     public void generatePac() {
-        pac = new Pac(canvas,CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+        pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+        canvas.add(pac);
     }
 
     public void run() {
@@ -38,6 +40,11 @@ public class TracMan {
     }
 
     public void resetGame() {
+    }
+
+    public void updatePacPosinTrac(Pac pac){
+        this.pac= pac;
+        canvas.onMouseMove(event -> pac.updatePacPosition(event.getPosition()));
     }
 
 }
