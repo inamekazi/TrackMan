@@ -581,7 +581,7 @@ public class CanvasWindow {
      */
     public void animate(Runnable callback) {
         mainThreadWatcher.afterThreadExits(() -> {
-            Timer timer = new Timer(15, e -> {
+            Timer timer = new Timer(150, e -> {
                 callback.run();
                 draw();
             });
