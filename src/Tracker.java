@@ -7,7 +7,7 @@ import java.awt.*;
 /*
 *
 * */
-public abstract class Tracker{
+public abstract class Tracker {
 //    private final String message;
     public void emitMessage(String message){
         System.out.println(message);

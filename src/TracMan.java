@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import comp127graphics.GraphicsGroup;
 import comp127graphics.Point;
+import comp127graphics.Rectangle;
 import comp127graphics.events.Key;
 
 
@@ -12,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
+import java.sql.SQLOutput;
 
 public class TracMan {
     private static final int CANVAS_WIDTH = 500;
@@ -27,6 +29,7 @@ public class TracMan {
 
     private static final Color CanvasColor = new Color(54, 54, 255, 205);
     private Pac pac;
+
     public CanvasWindow canvas;
 
     public static void main(String[] args) {
@@ -49,6 +52,8 @@ public class TracMan {
         graphics.setPosition(80.0 , 80.0  );
         canvas.add(graphics);
         canvas.animate(()->run(trackerAd));
+        canvas.animate(()->ifInterestWithPac(pac));
+
 //        canvas.add(trackerAd);
     }
 
@@ -60,6 +65,15 @@ public class TracMan {
         testCritter.moveTowardsGoal(0.05);
 
         canvas.pause(50);
+    }
+    protected void ifInterestWithPac(Pac pac){
+        double centerx = pac.getCenterX();
+        double centery = pac.getCenterY();
+        System.out.println(canvas.getElementAt(centerx,centery));
+        if(canvas.getElementAt(centerx,centery) instanceof trackerBody){
+            System.out.println("it Connects");
+        }
+
     }
 
 

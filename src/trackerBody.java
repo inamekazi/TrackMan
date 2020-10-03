@@ -1,6 +1,7 @@
 
 import comp127graphics.GraphicsGroup;
 import comp127graphics.Point;
+import comp127graphics.Rectangle;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Paul Cantrell
  */
-public abstract class trackerBody {
+public abstract class trackerBody extends Rectangle {
     private final GraphicsGroup graphics;
     private double speed;
     private List<Eye> eyes;
@@ -26,6 +27,7 @@ public abstract class trackerBody {
     protected double yOffset = 0.0;
 
     public trackerBody() {
+        super(1,2,3,4);
         eyes = new ArrayList<Eye>();
         legs = new ArrayList<Leg>();
         graphics = new GraphicsGroup(0,0);
@@ -62,7 +64,8 @@ public abstract class trackerBody {
      */
     protected abstract void buildGraphics();
 
-    public double getSize() {
+
+    public double getSizeTracker() {
         return Math.hypot(getGraphics().getWidth(), getGraphics().getHeight());
     }
 

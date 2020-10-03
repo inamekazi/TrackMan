@@ -60,7 +60,6 @@ public class Pac extends Ellipse implements Runnable{
             if(!hitLowerBoundary()){
                 this.setPosition(this.getCenterX(), getCenterY() + speed);
             }
-
         }
     }
 

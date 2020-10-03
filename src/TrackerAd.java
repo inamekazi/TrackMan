@@ -5,7 +5,6 @@ import comp127graphics.Ellipse;
 import java.awt.*;
 import comp127graphics.Rectangle;
 
-
 public class TrackerAd extends trackerBody{
     public static final Color Stroke_Color = new Color(218, 236, 255),
             Fill_Color = new Color(218, 236, 255),
