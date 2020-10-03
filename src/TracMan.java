@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
+import java.util.Random;
 
 public class TracMan {
     private static final int CANVAS_WIDTH = 500;
@@ -43,8 +44,7 @@ public class TracMan {
         double speed = 1;
         pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, speed);
         canvas.add(pac);
-        AdBlock add= new AdBlock(10,10,10,10);
-        canvas.add(add);
+        generateAdBlock();
 
 
         TrackerAd trackerAd = new TrackerAd();
@@ -53,6 +53,21 @@ public class TracMan {
         canvas.add(graphics);
         canvas.animate(()->run(trackerAd));
 //        canvas.add(trackerAd);
+    }
+
+    public void generateAdBlock(){
+        Random r = new Random();
+        double randomX = 0 + (CANVAS_WIDTH - 0) * r.nextDouble();
+        double randomY = 0 + (CANVAS_HEIGHT - 0) * r.nextDouble();
+        AdBlock adBlock= new AdBlock(randomX,randomY,10,10);
+        canvas.add(adBlock);
+    }
+
+    public void moveAdBlock(){
+        // if gotten by pac, delete current and add new block
+
+        // elif 10 seconds have passed, delete current block and add new one
+
     }
 
     public void run(trackerBody testCritter) {
