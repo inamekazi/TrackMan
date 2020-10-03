@@ -18,7 +18,6 @@ import java.sql.SQLOutput;
 public class TracMan {
     private static final int CANVAS_WIDTH = 500;
     private static final int CANVAS_HEIGHT = CANVAS_WIDTH / 2 * 3;
-
     public static int getCanvasWidth() {
         return CANVAS_WIDTH;
     }
@@ -48,18 +47,28 @@ public class TracMan {
         canvas.add(pac);
 
         TrackerAd trackerAd = new TrackerAd();
+
+        TrackerSiteAnalytics trackerSA = new TrackerSiteAnalytics();
+
         GraphicsGroup graphics = trackerAd.getGraphics();
         graphics.setPosition(80.0 , 80.0  );
         graphics.setAllType(trackerAd);
-        canvas.add(graphics);
-        canvas.animate(()->run(trackerAd));
-        canvas.animate(()->ifInterestWithPac(pac));
 
-//        canvas.add(trackerAd);
+        GraphicsGroup graphicsSA = trackerSA.getGraphics();
+        graphicsSA.setPosition(180.0 , 180.0  );
+        graphicsSA.setAllType(trackerSA);
+        canvas.add(graphics);
+        canvas.add(graphicsSA);
+        canvas.pause(90);
+
+        canvas.animate(()->run(trackerAd, 300));
+        canvas.animate(()->run(trackerSA,100));
+
+        canvas.animate(()->ifInterestWithPac(pac));
     }
 
-    public void run(trackerBody testCritter) {
-        testCritter.setSpeed(300);
+    public void run(trackerBody testCritter, double speed) {
+        testCritter.setSpeed(speed);
         testCritter.setGoal(new Point(
                 pac.getCenter().getX() , // + Math.cos(t) * 5,
                 pac.getCenter().getY() )); // Math.cos(t) * 5 + 5));
@@ -76,6 +85,9 @@ public class TracMan {
 
         if(canvas.getElementAt(centerx, centery) != null && canvas.getElementAt(centerx, centery).getType() instanceof TrackerAd){
             System.out.println("it Connects to tracker ad");
+        }
+        if(canvas.getElementAt(centerx, centery) != null && canvas.getElementAt(centerx, centery).getType() instanceof TrackerSiteAnalytics){
+            System.out.println("it Connects to tracker SA");
         }
 
     }
