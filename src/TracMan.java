@@ -43,6 +43,9 @@ public class TracMan {
         double speed = 1;
         pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, speed);
         canvas.add(pac);
+        AdBlock add= new AdBlock(10,10,10,10);
+        canvas.add(add);
+
 
         TrackerAd trackerAd = new TrackerAd();
         GraphicsGroup graphics = trackerAd.getGraphics();
