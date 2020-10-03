@@ -3,13 +3,19 @@ import comp127graphics.Arc;
 import comp127graphics.Ellipse;
 
 import java.awt.*;
+import java.util.ArrayList;
+
+import comp127graphics.GraphicsGroup;
 import comp127graphics.Rectangle;
 
 public class TrackerAd extends trackerBody{
     public static final Color Stroke_Color = new Color(218, 236, 255),
             Fill_Color = new Color(218, 236, 255),
             Fill_Body_Color = new Color(218, 236, 255);
-
+    public TrackerAd() {
+//        super(1,2,3,4);
+        buildGraphics();
+    }
     @Override
     protected void buildGraphics() {
         Ellipse duck = new Ellipse(30,20,40,40);

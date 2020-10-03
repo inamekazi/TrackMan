@@ -25,6 +25,16 @@ public class GraphicsGroup extends GraphicsObject implements GraphicsObserver {
      * Holds the objects to be drawn in calls to paintComponent
      */
     private ConcurrentLinkedDeque<GraphicsObject> children;
+    private Object type;
+
+    public void setType(Object type) {
+        this.type = type;
+    }
+    public void setAllType(Object type){
+        for(GraphicsObject child : children){
+            child.setType(type);
+        }
+    }
 
     /**
      * X position of group in canvas space

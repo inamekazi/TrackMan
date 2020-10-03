@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Paul Cantrell
  */
-public abstract class trackerBody extends Rectangle {
+public abstract class trackerBody extends GraphicsGroup {
     private final GraphicsGroup graphics;
     private double speed;
     private List<Eye> eyes;
@@ -27,7 +27,6 @@ public abstract class trackerBody extends Rectangle {
     protected double yOffset = 0.0;
 
     public trackerBody() {
-        super(1,2,3,4);
         eyes = new ArrayList<Eye>();
         legs = new ArrayList<Leg>();
         graphics = new GraphicsGroup(0,0);

@@ -50,6 +50,7 @@ public class TracMan {
         TrackerAd trackerAd = new TrackerAd();
         GraphicsGroup graphics = trackerAd.getGraphics();
         graphics.setPosition(80.0 , 80.0  );
+        graphics.setAllType(trackerAd);
         canvas.add(graphics);
         canvas.animate(()->run(trackerAd));
         canvas.animate(()->ifInterestWithPac(pac));
@@ -69,9 +70,12 @@ public class TracMan {
     protected void ifInterestWithPac(Pac pac){
         double centerx = pac.getCenterX();
         double centery = pac.getCenterY();
-        System.out.println(canvas.getElementAt(centerx,centery));
-        if(canvas.getElementAt(centerx,centery) instanceof trackerBody){
-            System.out.println("it Connects");
+        if(canvas.getElementAt(centerx, centery) != null){
+            System.out.println(canvas.getElementAt(centerx, centery).getType() instanceof TrackerAd);
+        }
+
+        if(canvas.getElementAt(centerx, centery) != null && canvas.getElementAt(centerx, centery).getType() instanceof TrackerAd){
+            System.out.println("it Connects to tracker ad");
         }
 
     }
