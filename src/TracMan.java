@@ -46,29 +46,22 @@ public class TracMan {
 
         TrackerAd trackerAd = new TrackerAd();
         GraphicsGroup graphics = trackerAd.getGraphics();
-        graphics.setPosition(40.0 + trackerAd.getxOffset(), 40.0 + trackerAd.getyOffset());
+        graphics.setPosition(80.0 , 80.0  );
         canvas.add(graphics);
-        run(trackerAd);
+        canvas.animate(()->run(trackerAd));
 //        canvas.add(trackerAd);
     }
-    @SuppressWarnings("InfiniteLoopStatement")
+
     public void run(trackerBody testCritter) {
-        testCritter.setSpeed(10);
-        Point center = testCritter.getGraphics().getPosition();
-        double t = 0;
-        while(true) {
-            testCritter.setGoal(new Point2D.Double(
-                    center.getX() + Math.cos(t) * 5 + 5,
-                    center.getY() + Math.sin(t) * 5 + 5));
-            testCritter.moveTowardsGoal(0.05);
+        testCritter.setSpeed(300);
+        testCritter.setGoal(new Point(
+                pac.getCenter().getX() , // + Math.cos(t) * 5,
+                pac.getCenter().getY() )); // Math.cos(t) * 5 + 5));
+        testCritter.moveTowardsGoal(0.05);
 
-            canvas.pause(50);
-            t = (t + 0.1) % (Math.PI*2);
-        }
+        canvas.pause(50);
     }
 
-    public void run() {
-    }
 
     public void beginGame() {
     }

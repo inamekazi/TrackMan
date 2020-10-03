@@ -1,5 +1,6 @@
 
 import comp127graphics.GraphicsGroup;
+import comp127graphics.Point;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public abstract class trackerBody {
     private double speed;
     private List<Eye> eyes;
     private List<Leg> legs;
-    private Point.Double goal;
+    private comp127graphics.Point goal;
 
     // Some critters are drawn so that the upper left corner x, y, of its shape
     // might be negative. If so, these should be changed in the subclass to show that.
@@ -73,27 +74,25 @@ public abstract class trackerBody {
         this.speed = speed;
     }
 
-    public Point.Double getGoal() {
+    public Point getGoal() {
         return goal;
     }
 
-    public void setGoal(Point.Double goal) {
+    public void setGoal(comp127graphics.Point goal) {
         this.goal = goal;
     }
 
     public void moveTowardsGoal(double dt) {
-        double dx = goal.getX() - getGraphics().getX(),
-                dy = goal.getY() - getGraphics().getY(),
+        double dx = goal.getX() - graphics.getX(), dy = goal.getY() - graphics.getY(), dist;
                 dist = Math.hypot(dx, dy);
         moveBy(
-                dx * getSpeed() / dist,
-                dy * getSpeed() / dist,
+                dx * getSpeed()/dist,
+                dy * getSpeed()/dist ,
                 dt);
     }
 
     public void moveBy(double dx, double dy, double dt) {
-        graphics.setPosition(dx * dt, dy * dt);
-
+        graphics.setPosition(graphics.getX() + dx * dt, graphics.getY() + dy * dt);
         for(Eye eye : eyes)
             eye.lookInDirectionOf(dx, dy, dt);
 

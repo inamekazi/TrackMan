@@ -41,14 +41,14 @@ public class TrackerAd extends trackerBody{
 //        leftShoe.setFillColor(new Color(1,1,1));
 //        leftShoe.setFilled(true);
 
-        addLeg(new Leg(leftLeg, 2));   // this leg will be animated when running CritterParty
+//        addLeg(new Leg(leftLeg, 2));   // this leg will be animated when running CritterParty
 //        addLeg(new Leg(leftShoe, 2));   // this leg will be animated when running CritterParty
 
         Rectangle rightLeg = new Rectangle(50,80,10,10);
         rightLeg.setStrokeColor(Fill_Body_Color);
         rightLeg.setFillColor(Stroke_Color);
         rightLeg.setFilled(true);
-        addLeg(new Leg(rightLeg, 2));   // this leg will be animated when running CritterParty
+//        addLeg(new Leg(rightLeg, 2));   // this leg will be animated when running CritterParty
 
 
         Eye leftEye = new Eye(5, 0.8, 0.18, Color.BLUE);
