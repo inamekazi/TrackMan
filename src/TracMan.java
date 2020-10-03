@@ -1,8 +1,9 @@
 import comp127graphics.CanvasWindow;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import comp127graphics.GraphicsGroup;
 import comp127graphics.Point;
 import comp127graphics.events.Key;
 
@@ -10,6 +11,7 @@ import comp127graphics.events.Key;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Point2D;
 
 public class TracMan {
     private static final int CANVAS_WIDTH = 500;
@@ -41,6 +43,28 @@ public class TracMan {
         double speed = 1;
         pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, speed);
         canvas.add(pac);
+
+        TrackerAd trackerAd = new TrackerAd();
+        GraphicsGroup graphics = trackerAd.getGraphics();
+        graphics.setPosition(40.0 + trackerAd.getxOffset(), 40.0 + trackerAd.getyOffset());
+        canvas.add(graphics);
+        run(trackerAd);
+//        canvas.add(trackerAd);
+    }
+    @SuppressWarnings("InfiniteLoopStatement")
+    public void run(trackerBody testCritter) {
+        testCritter.setSpeed(10);
+        Point center = testCritter.getGraphics().getPosition();
+        double t = 0;
+        while(true) {
+            testCritter.setGoal(new Point2D.Double(
+                    center.getX() + Math.cos(t) * 5 + 5,
+                    center.getY() + Math.sin(t) * 5 + 5));
+            testCritter.moveTowardsGoal(0.05);
+
+            canvas.pause(50);
+            t = (t + 0.1) % (Math.PI*2);
+        }
     }
 
     public void run() {
