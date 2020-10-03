@@ -4,9 +4,13 @@ import  comp127graphics.GraphicsGroup;
 
 import java.awt.*;
 
-
-
-public class Tracker{
-
+/*
+*
+* */
+public abstract class Tracker{
+//    private final String message;
+    public void emitMessage(String message){
+        System.out.println(message);
+    }
 
 }

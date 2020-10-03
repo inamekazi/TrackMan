@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import comp127graphics.Point;
+import comp127graphics.events.Key;
 
 
 import java.awt.event.MouseEvent;
@@ -13,6 +14,15 @@ import java.awt.event.MouseMotionListener;
 public class TracMan {
     private static final int CANVAS_WIDTH = 500;
     private static final int CANVAS_HEIGHT = CANVAS_WIDTH / 2 * 3;
+
+    public static int getCanvasWidth() {
+        return CANVAS_WIDTH;
+    }
+
+    public static int getCanvasHeight() {
+        return CANVAS_HEIGHT;
+    }
+
     private static final Color CanvasColor = new Color(54, 54, 255, 205);
     private Pac pac;
     public CanvasWindow canvas;
@@ -27,9 +37,9 @@ public class TracMan {
         generatePac();
         updatePacPosinTrac(pac);
     }
-
     public void generatePac() {
-        pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+        double speed = 1;
+        pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, speed);
         canvas.add(pac);
     }
 
@@ -43,8 +53,7 @@ public class TracMan {
     }
 
     public void updatePacPosinTrac(Pac pac){
-        this.pac= pac;
-        canvas.onMouseMove(event -> pac.updatePacPosition(event.getPosition()));
+        this.canvas.animate(() -> canvas.onKeyDown(event -> pac.updatePacPositionByKey(event.getKey())));
+//        canvas.onMouseMove(event -> pac.updatePacPosition(event.getPosition()));
     }
-
 }
