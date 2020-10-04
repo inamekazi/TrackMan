@@ -20,9 +20,6 @@ public abstract class trackerBody extends GraphicsGroup {
     private List<Leg> legs;
     private comp127graphics.Point goal;
 
-    // Some critters are drawn so that the upper left corner x, y, of its shape
-    // might be negative. If so, these should be changed in the subclass to show that.
-    // See BoxBot and RoundBug for examples.
     protected double xOffset = 0.0;
     protected double yOffset = 0.0;
 
