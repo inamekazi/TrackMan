@@ -1,19 +1,24 @@
 import comp127graphics.*;
 
 import java.awt.*;
+import javax.swing.*;
 
+import comp127graphics.Image;
 import comp127graphics.Point;
+import comp127graphics.Rectangle;
 
 public class TracMan {
     private static final int CANVAS_WIDTH = 500;
     private static final int CANVAS_HEIGHT = CANVAS_WIDTH / 2 * 3;
     private static final Color CanvasColor = new Color(54, 54, 255, 205);
+    private static final Color PopUpColor = new Color(183, 255, 252, 205);
     private Pac pac;
     private GraphicsText livesMessage;
     private double numberOfLives = 4;
     private GraphicsText lossMessage;
     private double score = 0;
     public CanvasWindow canvas;
+    public Rectangle popUp;
 
     public static void main(String[] args) {
         TracMan tracMan = new TracMan();
@@ -71,15 +76,21 @@ public class TracMan {
             canvas.remove(livesMessage);
             this.numberOfLives--;
             generateLivesText();
+
+
         }
         if (pac.collideswithAnalytics()){
             canvas.remove(livesMessage);
             this.numberOfLives--;
             generateLivesText();
+
+
         }
         if(pac.collideswithAnalytics() && numberOfLives ==0 ||
                 (pac.collideswithAdvertisement() && numberOfLives ==0) ){
-            generateLossScreen();
+            generatePopUp();
+
+//            generateLossScreen();
         }
     }
     /**
@@ -149,5 +160,11 @@ public class TracMan {
         return CANVAS_HEIGHT;
     }
 
+    public void generatePopUp(){
+        popUp = new Rectangle(200,200,100,100);
+        popUp.setFillColor(PopUpColor);
+        popUp.setFilled(true);
+        canvas.add(popUp);
+    }
 
 }
