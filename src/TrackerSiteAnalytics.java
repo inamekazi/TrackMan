@@ -56,8 +56,8 @@ public class TrackerSiteAnalytics extends trackerBody{
 //        addLeg(new Leg(rightLeg, 2));   // this leg will be animated when running CritterParty
 
 
-        Eye leftEye = new Eye(5, 0.8, 0.18, Color.BLUE);
-        Eye rightEye = new Eye(5, 0.8, 0.18, Color.BLUE);
+        Eye leftEye = new Eye(5, 0.4, 0.18, Color.BLUE);
+        Eye rightEye = new Eye(5, 0.4, 0.18, Color.BLUE);
         addEye(leftEye, 42, 40);
         addEye(rightEye, 58, 40);
         Arc smile = new Arc(40,40,20,20,180,120);

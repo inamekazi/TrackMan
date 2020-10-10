@@ -20,8 +20,8 @@ public abstract class trackerBody extends GraphicsGroup {
     private List<Leg> legs;
     private comp127graphics.Point goal;
 
-    protected double xOffset = 0.0;
-    protected double yOffset = 0.0;
+    protected double xOffset = 40.0;
+    protected double yOffset = 40.0;
 
     public trackerBody() {
         eyes = new ArrayList<Eye>();
@@ -82,18 +82,20 @@ public abstract class trackerBody extends GraphicsGroup {
     }
 
     public void moveTowardsGoal(double dt) {
-        double dx = goal.getX() - graphics.getX(), dy = goal.getY() - graphics.getY(), dist;
-                dist = Math.hypot(dx, dy);
-        moveBy(
-                dx * getSpeed()/dist,
-                dy * getSpeed()/dist ,
+
+
+        double dx = goal.getX() - graphics.getX() - getxOffset(), dy = goal.getY() - graphics.getY() - getyOffset(), dist = Math.hypot(dx, dy);
+        moveBy(     // 2 m/s  5m   0.4m/s
+                dx * getSpeed() / 100,
+//                dx * getSpeed()/dist,
+                dy * getSpeed() / 100,
                 dt);
     }
 
     public void moveBy(double dx, double dy, double dt) {
         graphics.setPosition(graphics.getX() + dx * dt, graphics.getY() + dy * dt);
         for(Eye eye : eyes)
-            eye.lookInDirectionOf(dx, dy, dt);
+            eye.lookInDirectionOf(dx, dy, 0.5);
 
         for(Leg leg : legs)
             leg.bodyMovedBy(dx * dt, dy * dt);

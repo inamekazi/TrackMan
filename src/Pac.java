@@ -4,6 +4,7 @@ import comp127graphics.events.Key;
 
 import java.awt.*;
 import java.sql.SQLOutput;
+import java.util.Map;
 
 
 public class Pac extends Ellipse implements Runnable {
@@ -13,8 +14,13 @@ public class Pac extends Ellipse implements Runnable {
     public double centerY;
     public double width;
     public double speed;
+    private Map<String, List> info;
     public CanvasWindow canvas;
     private static final double PAC_RADIUS = 10;
+
+    public static double getPacRadius() {
+        return PAC_RADIUS;
+    }
 
     public Pac(double centerX, double centerY, double speed, CanvasWindow canvas) {
         super(centerX - PAC_RADIUS, centerY - PAC_RADIUS, PAC_RADIUS * 2, PAC_RADIUS * 2);
@@ -121,6 +127,16 @@ public class Pac extends Ellipse implements Runnable {
             return true;
         }
         return false;
+    }
+
+    public void collideswithDefense(DefenseManager defenseManager) {
+        if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof Defenses) {
+            System.out.println("IT HIT denfense");
+            ((Defenses) canvas.getElementAt(getCenterX(), getCenterY()).getType()).showMessage();
+            defenseManager.removeCurrentDefense();
+            defenseManager.generateRandomDefense();
+
+        }
     }
 
 
