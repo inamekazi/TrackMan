@@ -2,6 +2,7 @@ import comp127graphics.*;
 import comp127graphics.Rectangle;
 import  comp127graphics.GraphicsGroup;
 import java.awt.*;
+import java.util.Random;
 
 public class AdBlock extends Rectangle {
 
@@ -18,6 +19,12 @@ public class AdBlock extends Rectangle {
         this.centerY = centerY;
         setFillColor(ADBLOCK_COLOR);
         setFilled(true);
+    }
+
+    void setNewPosition(int CANVAS_WIDTH, int CANVAS_HEIGHT){
+        Random r = new Random();
+        this.centerX = 0 + (CANVAS_WIDTH - 0) * r.nextDouble();
+        this.centerY = 0 + (CANVAS_HEIGHT - 0) * r.nextDouble();
     }
 
 //    Polygon Attempt

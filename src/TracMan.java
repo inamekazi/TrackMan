@@ -44,8 +44,8 @@ public class TracMan {
         double speed = 1;
         pac = new Pac(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, speed);
         canvas.add(pac);
-        generateAdBlock();
 
+        generateNewAdBlock();
 
         TrackerAd trackerAd = new TrackerAd();
         GraphicsGroup graphics = trackerAd.getGraphics();
@@ -55,7 +55,7 @@ public class TracMan {
 //        canvas.add(trackerAd);
     }
 
-    public void generateAdBlock(){
+    public void generateNewAdBlock(){
         Random r = new Random();
         double randomX = 0 + (CANVAS_WIDTH - 0) * r.nextDouble();
         double randomY = 0 + (CANVAS_HEIGHT - 0) * r.nextDouble();
@@ -63,9 +63,9 @@ public class TracMan {
         canvas.add(adBlock);
     }
 
-    public void moveAdBlock(){
+    public void moveAdBlock(AdBlock adBlock, int CANVAS_WIDTH, int CANVAS_HEIGHT){
         // if gotten by pac, delete current and add new block
-
+        adBlock.setNewPosition(CANVAS_WIDTH, CANVAS_HEIGHT);
         // elif 10 seconds have passed, delete current block and add new one
 
     }
