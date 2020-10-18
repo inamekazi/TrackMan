@@ -18,14 +18,14 @@ public final class CritterUtils {
      * @param name Image name and extension
      * @return Image object with the specified image, null if not found
      */
-    public static Image loadCritterImage(String name)
-    {
-        try {
-            System.out.println(Paths.get(CritterUtils.class.getResource("/"+ name).toURI()).toString());
-            return new Image(0,0, Paths.get(CritterUtils.class.getResource("/"+ name).toURI()).toString());
-        } catch(URISyntaxException e) {
-            throw new IllegalArgumentException("Invalid image URI", e);
-        }
-    }
+//    public static Image loadCritterImage(String name)
+//    {
+//        try {
+//            System.out.println(Paths.get(CritterUtils.class.getResource("/"+ name).toURI()).toString());
+//            return new Image(0,0, Paths.get(CritterUtils.class.getResource("/"+ name).toURI()).toString());
+//        } catch(URISyntaxException e) {
+//            throw new IllegalArgumentException("Invalid image URI", e);
+//        }
+//    }
 
 }

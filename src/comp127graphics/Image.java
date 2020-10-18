@@ -58,10 +58,11 @@ public class Image extends GraphicsObject {
      *
      * @param path path of image file to load, relative to the res/ directory.
      */
-    public Image(double x, double y, String path) {
+    public Image(double x, double y, String path, int maxWidth) {
         this.x = x;
         this.y = y;
         setImagePath(path);
+        setMaxWidth(maxWidth);
     }
 
     /**

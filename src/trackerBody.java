@@ -86,9 +86,9 @@ public abstract class trackerBody extends GraphicsGroup {
 
         double dx = goal.getX() - graphics.getX() - getxOffset(), dy = goal.getY() - graphics.getY() - getyOffset(), dist = Math.hypot(dx, dy);
         moveBy(     // 2 m/s  5m   0.4m/s
-                dx * getSpeed() / 100,
+                dx * getSpeed() / 20,
 //                dx * getSpeed()/dist,
-                dy * getSpeed() / 100,
+                dy * getSpeed() / 20,
                 dt);
     }
 

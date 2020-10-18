@@ -16,6 +16,8 @@ public class Pac extends Ellipse implements Runnable {
     public double speed;
     private Map<String, List> info;
     public CanvasWindow canvas;
+    Long defenseStart = null;
+    Long incentiveStart = null;
     private static final double PAC_RADIUS = 10;
 
     public static double getPacRadius() {
@@ -129,14 +131,32 @@ public class Pac extends Ellipse implements Runnable {
         return false;
     }
 
-    public void collideswithDefense(DefenseManager defenseManager) {
+    public boolean collideswithDefense(DefenseManager defenseManager) {
         if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof Defenses) {
-            System.out.println("IT HIT denfense");
-            ((Defenses) canvas.getElementAt(getCenterX(), getCenterY()).getType()).showMessage();
+            ((Defenses) canvas.getElementAt(getCenterX(), getCenterY()).getType()).showMessage(15);
             defenseManager.removeCurrentDefense();
-            defenseManager.generateRandomDefense();
-
+            defenseStart = System.currentTimeMillis();
+            return true;
         }
+        if (defenseStart != null && System.currentTimeMillis() - defenseStart > 2000){
+            defenseStart = null;
+            defenseManager.generateRandomDefense();
+        }
+        return false;
+    }
+
+    public boolean collideWithIncentive(IncentiveManager incentiveManager) {
+        if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof Incentives) {
+//            ((Incentives) canvas.getElementAt(getCenterX(), getCenterY()).getType()).showMessage();
+            incentiveManager.removeCurrentIncentive();
+            incentiveStart = System.currentTimeMillis();
+            return true;
+        }
+        if (incentiveStart != null && System.currentTimeMillis() - incentiveStart > 2000){
+            incentiveStart = null;
+            incentiveManager.generateRandomIncentive();
+        }
+        return false;
     }
 
 
