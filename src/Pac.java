@@ -17,6 +17,7 @@ public class Pac extends Ellipse implements Runnable {
     private Map<String, List> info;
     public CanvasWindow canvas;
     Long defenseStart = null;
+    private static Color BoxColor = new Color(110, 219, 255, 194);
     Long incentiveStart = null;
     private static final double PAC_RADIUS = 10;
 
@@ -117,7 +118,6 @@ public class Pac extends Ellipse implements Runnable {
 
     public boolean collideswithAdvertisement() {
         if(canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof TrackerAd){
-            System.out.println("It HIT TRACKERAD");
         return true;
         }
         return false;
@@ -133,7 +133,7 @@ public class Pac extends Ellipse implements Runnable {
 
     public boolean collideswithDefense(DefenseManager defenseManager) {
         if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof Defenses) {
-            ((Defenses) canvas.getElementAt(getCenterX(), getCenterY()).getType()).showMessage(15);
+            Defenses.showMessage(10, BoxColor, "");
             defenseManager.removeCurrentDefense();
             defenseStart = System.currentTimeMillis();
             return true;

@@ -1,14 +1,20 @@
 import comp127graphics.CanvasWindow;
 
 import java.awt.*;
+import java.util.List;
 import java.util.Random;
 
 public class DefenseManager {
     private CanvasWindow canvas;
     private Defenses defense;
+
+
     public DefenseManager(CanvasWindow canvas) {
+
         this.canvas = canvas;
+        Defenses.setDescription();
     }
+
     public void generateRandomDefense(){
         Random random = new Random();
         double x = random.nextDouble() * (TracMan.getCanvasWidth() - Pac.getPacRadius() * 2);
@@ -20,4 +26,5 @@ public class DefenseManager {
     public void removeCurrentDefense(){
         canvas.remove(defense.getGraphics());
     }
+
 }

@@ -22,7 +22,6 @@ public abstract class Incentives extends GraphicsGroup {
     }
     public Incentives(CanvasWindow canvasInput, double x, double y) {
         canvas = canvasInput;
-
         Image defenseBody = new Image(x, y, "surfing.png",SIZE);
         graphics = new GraphicsGroup();
         graphics.add(defenseBody);
