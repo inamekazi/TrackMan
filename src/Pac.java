@@ -1,14 +1,15 @@
 import comp127graphics.*;
 import comp127graphics.Point;
 import comp127graphics.events.Key;
-
 import java.awt.*;
-import java.sql.SQLOutput;
 import java.util.Map;
 
+/**
+ * This class represents the user in the TrackMan game.
+ * @author Lu Li, Alejandro Aguilar
+ * */
 
 public class Pac extends Ellipse implements Runnable {
-
     private static final Color PAC_COLOR = new Color(255, 244, 39, 250);
     public double centerX;
     public double centerY;
@@ -122,7 +123,6 @@ public class Pac extends Ellipse implements Runnable {
         }
         return false;
     }
-
     public boolean collideswithAnalytics() {
         if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof TrackerSiteAnalytics) {
             System.out.println("IT HIT ANALYTICS");
@@ -130,12 +130,12 @@ public class Pac extends Ellipse implements Runnable {
         }
         return false;
     }
-
-    public boolean collideswithDefense(DefenseManager defenseManager) {
+    public boolean collideswithDefense(DefenseManager defenseManager, TrackerManager trackerManager) {
         if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof Defenses) {
-            Defenses.showMessage(10, BoxColor, "");
+            int i = Defenses.showMessage(10, BoxColor, "");
             defenseManager.removeCurrentDefense();
             defenseStart = System.currentTimeMillis();
+            trackerManager.sleep(i);
             return true;
         }
         if (defenseStart != null && System.currentTimeMillis() - defenseStart > 2000){
@@ -147,7 +147,6 @@ public class Pac extends Ellipse implements Runnable {
 
     public boolean collideWithIncentive(IncentiveManager incentiveManager) {
         if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof Incentives) {
-//            ((Incentives) canvas.getElementAt(getCenterX(), getCenterY()).getType()).showMessage();
             incentiveManager.removeCurrentIncentive();
             incentiveStart = System.currentTimeMillis();
             return true;
@@ -158,24 +157,6 @@ public class Pac extends Ellipse implements Runnable {
         }
         return false;
     }
-
-
-//    public boolean collideswithEssential() {
-//        if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof TrackerSiteAnalytics) {
-//            System.out.println("IT HIT ANALYTICS");
-//            return true;
-//        }
-//        return false;
-//
-//    public boolean collideswithSocialMedia() {
-//        if (canvas.getElementAt(getCenterX(), getCenterY()) != null && canvas.getElementAt(getCenterX(), getCenterY()).getType() instanceof TrackerSiteAnalytics) {
-//            System.out.println("IT HIT ANALYTICS");
-//        return true;
-//    }
-//    return false;
-//    }
-
-
 }
 
 

@@ -1,16 +1,14 @@
 import comp127graphics.CanvasWindow;
-
-import java.awt.*;
-import java.util.List;
 import java.util.Random;
 
+/**
+ * This class manages all the defenses.
+ * @author Lu Li
+ * */
 public class DefenseManager {
     private CanvasWindow canvas;
     private Defenses defense;
-
-
     public DefenseManager(CanvasWindow canvas) {
-
         this.canvas = canvas;
         Defenses.setDescription();
     }

@@ -1,16 +1,18 @@
 import comp127graphics.*;
-
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import javax.swing.*;
-
 import comp127graphics.Image;
-import comp127graphics.Point;
 import comp127graphics.Rectangle;
+
+/**
+ * This is the main interface for our game: TrackMan - an educational game on online trackers and
+ * available tools to protect oneself from being tracked.
+ *
+ * @author Lu Li, Alejandro Aguilar.
+ * */
 
 public class TracMan {
     private static final int CANVAS_WIDTH = 1300;
@@ -23,7 +25,7 @@ public class TracMan {
     private GraphicsText livesMessage;
     private double numberOfLives = 4;
     private GraphicsText lossMessage;
-    private double score = 0;
+    private static double score = 0;
     public CanvasWindow canvas;
     public Rectangle popUp;
     private DefenseManager defenseManager;
@@ -31,7 +33,7 @@ public class TracMan {
     private TrackerManager trackerManager;
     private long startTime = System.currentTimeMillis();
     private GraphicsText timeLived;
-    private GraphicsText scoreDisplay;
+    private static GraphicsText scoreDisplay;
     private Image chrome = new Image(10,10,"chromenew.png", 100);
     private Image safari = new Image(10,10,"safarinew.png", 100);
     private Image firefox = new Image(10,10,"firefox.png", 100);
@@ -42,7 +44,7 @@ public class TracMan {
     private static final String[] MESSAGE = {
             "Customer Interaction Tracker (CIT) is a software and/or process of gathering information about customers interactions against all levels throughout a business. A CIT does not only track customers who have actually bought a product or service, but also keeps track of future prospects and how they interact with sales organisations. ",
             "Web analytics are oftentimes under the essential tracker branch, meaning they are deemed important enough for a website to function properly. Web analytics trackers, such as commonly used Google Analytics, gather information from users such as (but not limited to): Ip addresses, the type of device a user is using, search history, location and demographics, ad views, cookie data, etc. ",
-            "Essential trackers are trackers that are necessary for a website to function correctly and perform its basic functions as intended. Essential trackers can collect vast amounts of information from users for the purpose of running a website. Essential trackers can collect information such as, but not limited to dd views, browser and cookie information, internet service, page views, IP addresses, search history and login information. "};
+            "Ad-trackers are used to collects data  relating  to  a  user’s  browsing,  such  as  the  products  they  have viewed, put in their shopping cart and purchased. For each navigation event, they also collect the data and time of the event, the URL of the page or the name of the application on which the event took place.  These data will be used for recommendation algorithms to provide ads that are better tailored to a user’s interests."};
 
     public static void main(String[] args) {
         TracMan tracMan = new TracMan();
@@ -147,12 +149,8 @@ public class TracMan {
             generatePopUp();
             generateLoseMessage();
         }
-        if(pac.collideswithDefense(defenseManager)){
-            System.out.println("here");
-            trackerManager.sleep();
-        }
+        pac.collideswithDefense(defenseManager, trackerManager);
         if(pac.collideWithIncentive(incentiveManager)){
-            System.out.println("increase!!!");
             increaseScore(5);
         }
 
@@ -161,6 +159,7 @@ public class TracMan {
     private void afterCollision(int i){
         InformationManager.generateInformationMessage(i);
         Defenses.showMessage(13, BoxColor, MESSAGE[i]);
+
         canvas.remove(livesMessage);
         this.numberOfLives--;
         generateLivesText();
@@ -177,10 +176,10 @@ public class TracMan {
      * denerates the main objects of the Game TrackPac
      */
     public void beginGame() {
-        canvas.add(beginImage);
-        canvas.draw();
-        canvas.pause(20000);
-        canvas.remove(beginImage);
+//        canvas.add(beginImage);
+//        canvas.draw();
+//        canvas.pause(20000);
+//        canvas.remove(beginImage);
         generatePac();
         generateLivesText();
     }
@@ -275,19 +274,15 @@ public class TracMan {
      * increase the score if hits a surfing incentive
      * @param increment
      */
-    private void increaseScore(double increment){
-        System.out.println("update score!");
+    protected static void increaseScore(double increment){
         score += increment;
         scoreDisplay.setFontSize(25);
         scoreDisplay.setText("Score is:" + score);
     }
     public void formatString(int wordsPerLine,String description){
         Rectangle rectangle = new Rectangle(20,80,650,80);
-
         String[] myArray = description.split(" ");
-        System.out.println(myArray.length);
-        List<String> al = new ArrayList<>();
-        al = Arrays.asList(myArray);
+        List<String> al = Arrays.asList(myArray);
         int numOfLines = al.size() / wordsPerLine;
         String[] lines = new String[numOfLines];
         for(int i = 0; i < numOfLines; i++){
@@ -296,11 +291,9 @@ public class TracMan {
                 int curIndex = i * wordsPerLine + j;
                 if (curIndex < myArray.length){
                     curLine = curLine.concat(" "+ myArray[i * wordsPerLine + j]);
-                    System.out.println(curLine);
                 }
             }
             lines[i] = curLine;
-            System.out.println(curLine);
         }
         int lineWidth = 15;
         rectangle.setFilled(true);
@@ -319,6 +312,4 @@ public class TracMan {
         }
         canvas.remove(rectangle);
     }
-
-
 }

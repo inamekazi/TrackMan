@@ -1,8 +1,10 @@
 import comp127graphics.*;
-import comp127graphics.Rectangle;
-import  comp127graphics.GraphicsGroup;
-import java.awt.*;
-import java.security.MessageDigest;
+
+/**
+ * This is a class representing an ad blocker.
+ *
+ * @author Lu Li
+ * */
 
 public class AdBlock extends Defenses {
     boolean encountered = false;

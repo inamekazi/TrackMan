@@ -1,11 +1,15 @@
 import comp127graphics.*;
 import comp127graphics.Image;
 import comp127graphics.Rectangle;
-
 import java.awt.*;
-import java.security.MessageDigest;
 import java.util.*;
 import java.util.List;
+/**
+ * This class represents different available tools users have to prevent their information from being collected
+ * by third-party trackers.
+ *
+ * @author Lu Li
+ * */
 
 public abstract class Defenses extends GraphicsGroup {
     private final GraphicsGroup graphics;
@@ -43,7 +47,7 @@ public abstract class Defenses extends GraphicsGroup {
         canvas.add(graphics);
     }
 
-    public static void showMessage(int wordsPerLine, Color BoxColor, String description){
+    public static int showMessage(int wordsPerLine, Color BoxColor, String description){
         Random rand = new Random();
         boolean shownBefore = false;
         int id = rand.nextInt(messages.size());
@@ -51,6 +55,24 @@ public abstract class Defenses extends GraphicsGroup {
             description = messages.get(id).message;
             shownBefore = messages.get(id).shown;
             messages.get(id).shown = true;
+            if (id == 0){
+                TracMan.increaseScore(50);
+                GraphicsText add = new GraphicsText("+ 50", 550, 50);
+                add.setFontSize(50);
+                canvas.add(add);
+                canvas.draw();
+                canvas.pause(2000);
+                canvas.remove(add);
+            }
+            else {
+                TracMan.increaseScore(5);
+                GraphicsText add = new GraphicsText("+ 5", 550, 50);
+                add.setFontSize(40);
+                canvas.add(add);
+                canvas.draw();
+                canvas.pause(2000);
+                canvas.remove(add);
+            }
         }
         else{
             shownBefore = true;
@@ -85,15 +107,16 @@ public abstract class Defenses extends GraphicsGroup {
         }
         canvas.draw();
         if (shownBefore){
-            canvas.pause(5000);
+            canvas.pause(3000);
         }
         else{
-            canvas.pause(11111);
+            canvas.pause(8000);
         }
 
         for (GraphicsText text: texts) {
             canvas.remove(text);
         }
         canvas.remove(rectangle);
+        return id;
     }
 }

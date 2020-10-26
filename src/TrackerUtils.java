@@ -4,7 +4,7 @@ import comp127graphics.Image;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
-public final class CritterUtils {
+public final class TrackerUtils {
 
     /**
      * Weighted average: w=1 returns a; w=0 returns b.

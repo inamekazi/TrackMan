@@ -1,13 +1,15 @@
 import comp127graphics.CanvasWindow;
 import comp127graphics.GraphicsText;
 import comp127graphics.Rectangle;
-import org.w3c.dom.css.Rect;
-
-import javax.sound.midi.Track;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * This class manages the information a user has.
+ *
+ * @author Lu Li
+ * */
 public class InformationManager {
     private static String[] information = {
             "Your browsing behavior!",

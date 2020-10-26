@@ -1,7 +1,10 @@
 import comp127graphics.CanvasWindow;
-
-import java.awt.*;
 import java.util.Random;
+
+/**
+ * This class manages all the incentives.
+ * @author Lu Li
+ * */
 
 public class IncentiveManager {
     private CanvasWindow canvas;

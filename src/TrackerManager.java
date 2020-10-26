@@ -1,11 +1,14 @@
 import comp127graphics.CanvasWindow;
-import comp127graphics.GraphicsText;
 import comp127graphics.Point;
-import comp127graphics.Rectangle;
-
-import java.awt.*;
 import java.util.*;
 import java.util.List;
+
+/**
+ * This class manages all the trackers on the screen. It performs operations such as slowing down trackers,
+ * reactivating trackers, etc.
+ *
+ * @author Lu Li
+ * */
 
 public class TrackerManager {
     static Map<trackerBody, Integer> trackers = new HashMap<>();
@@ -36,14 +39,20 @@ public class TrackerManager {
             testCritter.moveTowardsGoal(0.05);
         }
     }
-
     public void addTracker(trackerBody tracker, int speed){
         this.trackers.put(tracker, speed);
     }
-    public static void sleep() {
+    public static void sleep(int i) {
         Random rand = new Random();
-        for (trackerBody testCritter: trackers.keySet()){
-            trackers.put(testCritter, trackers.get(testCritter) / 10 + 5 + rand.nextInt(20) );
+        if (i == 0){
+            for (trackerBody testCritter: trackers.keySet()){
+                trackers.put(testCritter, 0);
+            }
+        }
+        else{
+            for (trackerBody testCritter: trackers.keySet()){
+                trackers.put(testCritter, trackers.get(testCritter) / 10 + 5 + rand.nextInt(20) );
+            }
         }
     }
     public static void reactivate() {
@@ -51,59 +60,5 @@ public class TrackerManager {
         for (trackerBody testCritter: trackers.keySet()){
             trackers.put(testCritter, trackers.get(testCritter) * 10 + 10+rand.nextInt(100));
         }
-    }
-
-    public static void showMessage(int wordsPerLine, Color BoxColor, String description){
-        Random rand = new Random();
-        boolean shownBefore = false;
-        int id = rand.nextInt(messages.size());
-        if (description.length() == 0){
-            description = messages.get(id).message;
-            shownBefore = messages.get(id).shown;
-            messages.get(id).shown = true;
-        }
-        else{
-            shownBefore = true;
-        }
-        String[] myArray = description.split(" ");
-        List<String> al = new ArrayList<>();
-        al = Arrays.asList(myArray);
-        int numOfLines = al.size() / wordsPerLine + 1;
-        String[] lines = new String[numOfLines];
-        for(int i = 0; i < numOfLines; i++){
-            String curLine = "";
-            for (int j = 0; j < wordsPerLine; j ++){
-                int curIndex = i * wordsPerLine + j;
-                if (curIndex < myArray.length){
-                    curLine = curLine.concat(" "+ myArray[i * wordsPerLine + j]);
-                }
-            }
-            lines[i] = curLine;
-        }
-        int lineWidth = 25;
-        double x = TracMan.getCanvasWidth()/4;
-        double y = TracMan.getCanvasHeight()/4;
-        comp127graphics.Rectangle rectangle = new Rectangle(x, y, wordsPerLine * 60 + 20,lineWidth * numOfLines + 30);
-        rectangle.setFilled(true);
-        rectangle.setFillColor(BoxColor);
-        canvas.add(rectangle);
-        GraphicsText[] texts = new GraphicsText[numOfLines];
-        for (int i = 0; i < numOfLines; i++){
-            texts[i] = new GraphicsText(lines[i], x + 20,y + i * lineWidth + 30);
-            texts[i].setFontSize(16);
-            canvas.add(texts[i]);
-        }
-        canvas.draw();
-        if (shownBefore){
-            canvas.pause(5000);
-        }
-        else{
-            canvas.pause(11111);
-        }
-
-        for (GraphicsText text: texts) {
-            canvas.remove(text);
-        }
-        canvas.remove(rectangle);
     }
 }

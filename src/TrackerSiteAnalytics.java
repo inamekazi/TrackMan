@@ -1,12 +1,13 @@
-
 import comp127graphics.Arc;
 import comp127graphics.Ellipse;
-
 import java.awt.*;
-import java.util.ArrayList;
-
-import comp127graphics.GraphicsGroup;
 import comp127graphics.Rectangle;
+
+/**
+ * This is a class for the Site Analytics Tracker.
+ * Adopted from Critters Lab at Macalester College COMP 127.
+ * @author Lu Li.
+ * */
 
 public class TrackerSiteAnalytics extends trackerBody{
     public static final Color Stroke_Color = new Color(72, 114, 255),
@@ -41,23 +42,13 @@ public class TrackerSiteAnalytics extends trackerBody{
         leftLeg.setFillColor(Stroke_Color);
         leftLeg.setFilled(true);
 
-//        Rectangle leftShoe = new Rectangle(40,105, 10,10);
-//        leftShoe.setStrokeColor(Fill_Body_Color);
-//        leftShoe.setFillColor(new Color(1,1,1));
-//        leftShoe.setFilled(true);
-
-//        addLeg(new Leg(leftLeg, 2));   // this leg will be animated when running CritterParty
-//        addLeg(new Leg(leftShoe, 2));   // this leg will be animated when running CritterParty
-
         Rectangle rightLeg = new Rectangle(50,80,10,10);
         rightLeg.setStrokeColor(Fill_Body_Color);
         rightLeg.setFillColor(Stroke_Color);
         rightLeg.setFilled(true);
-//        addLeg(new Leg(rightLeg, 2));   // this leg will be animated when running CritterParty
 
-
-        Eye leftEye = new Eye(5, 0.4, 0.18, Color.BLUE);
-        Eye rightEye = new Eye(5, 0.4, 0.18, Color.BLUE);
+        TrackerEye leftEye = new TrackerEye(5, 0.4, 0.18, Color.BLUE);
+        TrackerEye rightEye = new TrackerEye(5, 0.4, 0.18, Color.BLUE);
         addEye(leftEye, 42, 40);
         addEye(rightEye, 58, 40);
         Arc smile = new Arc(40,40,20,20,180,120);

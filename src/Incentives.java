@@ -1,11 +1,12 @@
 import comp127graphics.*;
 import comp127graphics.Image;
-import comp127graphics.Rectangle;
-
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.List;
+
+/**
+ * This class represents incentives popping up on the screen for a user to collect.
+ *
+ * @author Lu Li
+ * */
 
 public abstract class Incentives extends GraphicsGroup {
     private final GraphicsGroup graphics;
@@ -14,8 +15,6 @@ public abstract class Incentives extends GraphicsGroup {
     private static double y;
     private final int SIZE = 40;
     private static Color defenseColor = new Color(200,80,100,80 );
-
-    List<String> nam = new ArrayList<>();
 
     public GraphicsGroup getGraphics() {
         return graphics;
