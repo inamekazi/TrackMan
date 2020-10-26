@@ -1,16 +1,16 @@
+/**
+ * This is a class for Trackers' eyes. Adopted from Macalester College COMP 127.
+ * @author Paul Cantrell, Lu Li
+ */
 
 import comp127graphics.Ellipse;
 import comp127graphics.GraphicsGroup;
 import comp127graphics.GraphicsObject;
 import comp127graphics.Point;
-
-import javax.swing.*;
 import java.awt.*;
 
-/**
- * @author Paul Cantrell
- */
-public class Eye {
+
+public class TrackerEye {
     private final GraphicsObject graphics;
     private final GraphicsObject pupil;
     private final Point pupilRestPosition;
@@ -24,7 +24,7 @@ public class Eye {
      * @param iris          Color of the iris
      * @return
      */
-    public Eye(double r, double pupilSize, double highlightSize, Color iris) {
+    public TrackerEye(double r, double pupilSize, double highlightSize, Color iris) {
         // Create the iris
         Ellipse white = new Ellipse(-r, -r, r * 2, r * 2);
         white.setFilled(true);
@@ -62,7 +62,7 @@ public class Eye {
      * Creates a new eye with custom graphics. The given pupil object with move on the edge of a circle
      * centered about its current location.
      */
-    public Eye(GraphicsGroup group, GraphicsObject pupil, double radius) {
+    public TrackerEye(GraphicsGroup group, GraphicsObject pupil, double radius) {
         this.graphics = group;
         this.pupil = pupil;
         pupilRestPosition = pupil.getPosition();
@@ -83,7 +83,7 @@ public class Eye {
         dy /= dist;
         Point loc = pupil.getPosition();
         pupil.setPosition(
-                CritterUtils.blend(loc.getX(), pupilRestPosition.getX() + radius * dx, Math.pow(0.05, dt)),
-                CritterUtils.blend(loc.getY(), pupilRestPosition.getY() + radius * dy, Math.pow(0.05, dt)));
+                TrackerUtils.blend(loc.getX(), pupilRestPosition.getX() + radius * dx, Math.pow(0.05, dt)),
+                TrackerUtils.blend(loc.getY(), pupilRestPosition.getY() + radius * dy, Math.pow(0.05, dt)));
     }
 }

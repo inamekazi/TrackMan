@@ -1,35 +1,27 @@
-
 import comp127graphics.GraphicsGroup;
 import comp127graphics.Point;
-import comp127graphics.Rectangle;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The base class for all critters.
- * Actual critters must implement buildGraphics and call addLeg and addEye.
+ * The base class for all trackers.
+ * Actual trackers must implement buildGraphics and call addLeg and addEye. Adopted from Macalester College COMP 127.
  *
- * @author Paul Cantrell
+ * @author Paul Cantrell, Lu Li
  */
-public abstract class trackerBody extends Rectangle {
+public abstract class trackerBody extends GraphicsGroup {
     private final GraphicsGroup graphics;
     private double speed;
-    private List<Eye> eyes;
-    private List<Leg> legs;
+    private List<TrackerEye> eyes;
+    private List<TrackerLeg> legs;
     private comp127graphics.Point goal;
 
-    // Some critters are drawn so that the upper left corner x, y, of its shape
-    // might be negative. If so, these should be changed in the subclass to show that.
-    // See BoxBot and RoundBug for examples.
-    protected double xOffset = 0.0;
-    protected double yOffset = 0.0;
+    protected double xOffset = 40.0;
+    protected double yOffset = 40.0;
 
     public trackerBody() {
-        super(1,2,3,4);
-        eyes = new ArrayList<Eye>();
-        legs = new ArrayList<Leg>();
+        eyes = new ArrayList<TrackerEye>();
+        legs = new ArrayList<TrackerLeg>();
         graphics = new GraphicsGroup(0,0);
         buildGraphics();
     }
@@ -86,38 +78,29 @@ public abstract class trackerBody extends Rectangle {
     }
 
     public void moveTowardsGoal(double dt) {
-        double dx = goal.getX() - graphics.getX(), dy = goal.getY() - graphics.getY(), dist;
-                dist = Math.hypot(dx, dy);
+
+
+        double dx = goal.getX() - graphics.getX() - getxOffset(), dy = goal.getY() - graphics.getY() - getyOffset(), dist = Math.hypot(dx, dy);
         moveBy(
-                dx * getSpeed()/dist,
-                dy * getSpeed()/dist ,
+                dx * getSpeed() / 20,
+                dy * getSpeed() / 20,
                 dt);
     }
 
     public void moveBy(double dx, double dy, double dt) {
         graphics.setPosition(graphics.getX() + dx * dt, graphics.getY() + dy * dt);
-        for(Eye eye : eyes)
-            eye.lookInDirectionOf(dx, dy, dt);
+        for(TrackerEye eye : eyes)
+            eye.lookInDirectionOf(dx, dy, 0.5);
 
-        for(Leg leg : legs)
+        for(TrackerLeg leg : legs)
             leg.bodyMovedBy(dx * dt, dy * dt);
-    }
-
-    /**
-     * Adds a leg to the critter.
-     * @param leg
-     */
-    protected void addLeg(Leg leg) {
-        getGraphics().add(leg.getGraphics());
-        legs.add(leg);
-        leg.setAnchored(legs.size() % 2 == 0);
     }
 
     /**
      * Adds an eye to the critter.
      * @param eye
      */
-    protected void addEye(Eye eye, int x, int y) {
+    protected void addEye(TrackerEye eye, int x, int y) {
         eye.getGraphics().setPosition(x, y);
         getGraphics().add(eye.getGraphics());
         eyes.add(eye);

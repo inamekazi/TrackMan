@@ -1,13 +1,13 @@
-
 import comp127graphics.GraphicsObject;
 import comp127graphics.Point;
-
 import java.awt.*;
 
 /**
+ * This class represents legs of trackers.
  * @author Paul Cantrell
  */
-public class Leg {
+
+public class TrackerLeg {
     private final GraphicsObject graphics;
     private final Point restPosition;
     private double rangeOfMotion;
@@ -19,7 +19,7 @@ public class Leg {
      * @param graphics         The visual representation of the leg, positioned at rest.
      * @param rangeOfMotion    How far away from its rest position the leg is allowed to move.
      */
-    public Leg(GraphicsObject graphics, double rangeOfMotion) {
+    public TrackerLeg(GraphicsObject graphics, double rangeOfMotion) {
         this.graphics = graphics;
         this.restPosition = graphics.getPosition();
         this.rangeOfMotion = rangeOfMotion;

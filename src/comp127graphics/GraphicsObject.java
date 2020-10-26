@@ -16,6 +16,14 @@ public abstract class GraphicsObject {
 
     private List<GraphicsObserver> observers = new ArrayList<GraphicsObserver>();
     private CanvasWindow canvas;
+    private Object type;
+
+    public void setType(Object type) {
+        this.type = type;
+    }
+    public Object getType(){
+        return type;
+    }
 
     /**
      * Gets the position of the object on the canvas. The location of the anchor point

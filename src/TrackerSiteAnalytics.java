@@ -4,17 +4,17 @@ import java.awt.*;
 import comp127graphics.Rectangle;
 
 /**
- * This is a class for the Advertisement Tracker.
+ * This is a class for the Site Analytics Tracker.
  * Adopted from Critters Lab at Macalester College COMP 127.
  * @author Lu Li.
  * */
 
-public class TrackerAd extends trackerBody{
-    public static final Color Stroke_Color = new Color(218, 236, 255),
-            Fill_Color = new Color(218, 236, 255),
+public class TrackerSiteAnalytics extends trackerBody{
+    public static final Color Stroke_Color = new Color(72, 114, 255),
+            Fill_Color = new Color(110, 219, 255),
             Fill_Body_Color = new Color(218, 236, 255);
-    public TrackerAd() {
-//        super(1,2,3,4);
+
+    public TrackerSiteAnalytics() {
         buildGraphics();
     }
     @Override
@@ -47,8 +47,8 @@ public class TrackerAd extends trackerBody{
         rightLeg.setFillColor(Stroke_Color);
         rightLeg.setFilled(true);
 
-        TrackerEye leftEye = new TrackerEye(7, 0.4, 0.18, Color.BLUE);
-        TrackerEye rightEye = new TrackerEye(7, 0.4, 0.18, Color.BLUE);
+        TrackerEye leftEye = new TrackerEye(5, 0.4, 0.18, Color.BLUE);
+        TrackerEye rightEye = new TrackerEye(5, 0.4, 0.18, Color.BLUE);
         addEye(leftEye, 42, 40);
         addEye(rightEye, 58, 40);
         Arc smile = new Arc(40,40,20,20,180,120);
